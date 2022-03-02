@@ -69,9 +69,9 @@ Console.WriteLine(mins + " minutes," + hours + " hours," + days + " days," + yea
 
 //7
 Console.WriteLine(7);
-int tempCel = 27;
-int tempKelvin = tempCel + 273;
-float tempFahr = tempCel * (9 / 5) + 32;
+float tempCel = 27;
+float tempKelvin = tempCel + 273;
+float tempFahr = tempCel * 9/5 + 32;
 Console.WriteLine(tempCel + " Celsius is equal to "+ tempKelvin + " Kelvin or " + tempFahr + " Fahrenheit");
 
 
