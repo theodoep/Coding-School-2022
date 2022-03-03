@@ -29,7 +29,7 @@ namespace Session03
         }
         public string GetName()
         {
-            return ("Dr" + Name);
+            return String.Format("Dr {0]", Name);
         }
 
     }
