@@ -27,7 +27,10 @@ namespace Session03
         {
 
         }
-
+        public string GetName()
+        {
+            return ("Dr" + Name);
+        }
 
     }
 }
