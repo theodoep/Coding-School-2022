@@ -16,5 +16,6 @@ namespace CalculatorLibrary
             double PowNum = Math.Pow(doublenum1,doublenum2);
             return PowNum.ToString();
         }
+
     }
 }
