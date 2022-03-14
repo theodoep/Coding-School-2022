@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Session03
+namespace UniversityClassLibrary
 {
     public class Student : Person
     {
         public int RegistrationNumber { get; set; }
-        public Course[] Courses { get; set; }
+        public List<Course> Courses { get; set; }
         public Student()
         {
             ID = Guid.NewGuid();
+            Courses = new List<Course>();   
         }
         public Student(int regNumber, string name, int age)
         {
             RegistrationNumber = regNumber;
-            Name = name;    
+            Name = name;
             Age = age;
             ID = Guid.NewGuid();
         }
@@ -29,6 +30,9 @@ namespace Session03
         {
 
         }
-
     }
 }
+
+
+
+

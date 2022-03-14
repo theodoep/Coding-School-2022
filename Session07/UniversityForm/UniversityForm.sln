@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityForm", "UniversityForm\UniversityForm.csproj", "{96E55F3B-5363-419A-9081-F5493F9E0879}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityClassLibrary", "..\UniversityClassLibrary\UniversityClassLibrary\UniversityClassLibrary.csproj", "{8F89F4A8-49A2-4B66-84A0-0198769B1156}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96E55F3B-5363-419A-9081-F5493F9E0879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E55F3B-5363-419A-9081-F5493F9E0879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E55F3B-5363-419A-9081-F5493F9E0879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E55F3B-5363-419A-9081-F5493F9E0879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F89F4A8-49A2-4B66-84A0-0198769B1156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F89F4A8-49A2-4B66-84A0-0198769B1156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F89F4A8-49A2-4B66-84A0-0198769B1156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F89F4A8-49A2-4B66-84A0-0198769B1156}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CC9FB58-A4A2-48B8-810B-992211EF5BF5}
+	EndGlobalSection
+EndGlobal
