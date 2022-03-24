@@ -1,0 +1,10 @@
+1. Set inside the request header Referrence Policy to no-referrer. This sends no referrer information along with the request made.
+2. image/jpeg
+3. Cache-Control(Request): max-age = 86400
+4. Yes
+5. Yes
+6. 400 Bad Request response status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error
+7. 500 Internal Server Error
+8. For login request we should use POST method. Because our login data is secure which needs security. When use POST method the data is sent to server in a bundle. But in GET method data is sent to the server followed by the url like append with url request which will be seen to everyone.
+9. Calling the same PUT request multiple times will always produce the same result. In contrast, calling a POST request repeatedly have side effects of creating the same resource multiple times.
+10. POST
