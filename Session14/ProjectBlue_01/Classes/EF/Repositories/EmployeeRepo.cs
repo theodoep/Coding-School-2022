@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Classes.EF.Context;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,67 +13,52 @@ namespace Classes.EF.Repositories
         public async Task Create(Employee entity)
         {
             using var context = new EmployeeContext();
-            context.Todos.Add(entity);
+            context.Employees.Add(entity);
             await context.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Guid id)
         {
-            using var context = new EmployeeAppContext();
-            var foundTodo = context.Todos.SingleOrDefault(emp => emp.Id == id);
-            if (foundTodo is null)
+            using var context = new EmployeeContext();
+            var foundEmployee = context.Employees.SingleOrDefault(emp => emp.ID == id);
+            if (foundEmployee is null)
                 return;
 
-            context.Todos.Remove(foundTodo);
+            context.Employees.Remove(foundEmployee);
             await context.SaveChangesAsync();
         }
 
-        public Task Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public List<Employee> GetAll()
         {
-            using var context = new EmployeeAppContext();
-            return context.Todos.ToList();
-        }
-
-        public Employee? GetById(int id)
-        {
-            using var context = new EmployeeAppContext();
-            return context.Todos.Where(todo => todo.Id == id).SingleOrDefault();
+            using var context = new EmployeeContext();
+            return context.Employees.ToList();
         }
 
         public Employee? GetById(Guid id)
         {
-            throw new NotImplementedException();
+            using var context = new EmployeeContext();
+            return context.Employees.Where(emp => emp.ID == id).SingleOrDefault();
         }
 
-        public async Task Update(int id, Employee entity)
+
+        public async Task Update(Guid id, Employee entity)
         {
-            using var context = new EmployeeAppContext();
-            var foundTodo = context.Todos.Include(todo => todo.Detail).SingleOrDefault(todo => todo.Id == id);
-            if (foundTodo is null)
+            using var context = new EmployeeContext();
+            var foundEmployee = context.Employees.Include(emp => emp.Detail).SingleOrDefault(emp => emp.ID == id);
+            if (foundEmployee is null)
                 return;
-            if (!foundTodo.Finished && entity.Finished)
+            if (!foundEmployee.Finished && entity.Finished)
             {
-                foundTodo.Detail.FinishDate = DateTime.Now;
+                foundEmployee.Detail.FinishDate = DateTime.Now;
             }
-            foundTodo.Finished = entity.Finished;
-            foundTodo.Title = entity.Title;
+            foundEmployee.Finished = entity.Finished;
+            foundEmployee.Title = entity.Title;
             await context.SaveChangesAsync();
         }
 
-        public Task Update(Guid id, Employee entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Employee> IEntityRepo<Employee>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 
 
