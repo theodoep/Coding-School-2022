@@ -16,7 +16,7 @@ else
             <input class="form-control" @bind="@ItemItem.Code" />
         </div>
         <div class="col-md-6">
-            <label class="form-label">Surname</label>
+            <label class="form-label">Description</label>
             <input class="form-control" @bind="@ItemItem.Description" />
         </div>
         <div class="col-md-6">
@@ -40,18 +40,18 @@ else
     </div>
 }
 @code {
-    [Parameter] public int? ID { get; set; }
+    [Parameter] public Guid ID { get; set; }
     ItemEditViewModel ItemItem { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        ItemItem = await httpClient.GetFromJsonAsync<ItemEditViewModel>($"item/{(ID == null ? 0 : ID)}");
+        ItemItem = await httpClient.GetFromJsonAsync<ItemEditViewModel>($"item/{ID}");
     }
 
      protected async Task OnSave()
     {
         HttpResponseMessage response;
-        if (ID == null)
+        if (ID == Guid.Empty)
         {
             response = await httpClient.PostAsJsonAsync("item", ItemItem);
         }

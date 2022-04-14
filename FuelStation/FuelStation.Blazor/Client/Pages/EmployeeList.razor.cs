@@ -14,7 +14,7 @@ namespace FuelStation.Blazor.Client.Pages
         }
         private async Task LoadItemsFromServer()
         {
-            employeeList = await httpClient.GetFromJsonAsync<List<EmployeeListViewModel>>("employee");
+            employeeList = await httpClient.GetFromJsonAsync<List<EmployeeListViewModel>>("Employees");
         }
         async Task AddItem()
         {

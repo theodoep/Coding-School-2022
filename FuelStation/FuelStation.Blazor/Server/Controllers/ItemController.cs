@@ -7,13 +7,18 @@ namespace FuelStation.Blazor.Server.Controllers
 {
     [ApiController]
     [Route("controller")]
-    public class ItemController : ControllerBase
+    public class AfaffController : ControllerBase
     {
         private readonly IEntityRepo<Item> _itemRepo;
 
-        public ItemController(IEntityRepo<Item> itemRepo)
+        //public ItemsController(IEntityRepo<Item> itemRepo)
+        //{
+        //    _itemRepo = itemRepo;
+
+        //}
+
+        public AfaffController()
         {
-            _itemRepo = itemRepo;
 
         }
 
@@ -35,7 +40,7 @@ namespace FuelStation.Blazor.Server.Controllers
         public async Task<ItemEditViewModel> Get(Guid id)
         {
             ItemEditViewModel model = new();
-            if (id != null)
+            if (id != Guid.Empty)
             {
                 var existing = await _itemRepo.GetByIdAsync(id);
                 model.ID = existing.ID;

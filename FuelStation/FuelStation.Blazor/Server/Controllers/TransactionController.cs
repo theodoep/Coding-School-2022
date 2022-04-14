@@ -34,7 +34,7 @@ namespace FuelStation.Blazor.Server.Controllers
         public async Task<TransactionEditViewModel> Get(Guid id)
         {
             TransactionEditViewModel model = new();
-            if (id != null)
+            if (id != Guid.Empty)
             {
                 var existing = await _transactionRepo.GetByIdAsync(id);
                 model.ID = existing.ID;

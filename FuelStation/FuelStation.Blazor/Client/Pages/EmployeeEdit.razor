@@ -55,18 +55,18 @@ else
 
 
 @code {
-    [Parameter] public int? ID { get; set; }
+    [Parameter] public Guid ID { get; set; }
     EmployeeEditViewModel EmployeeItem { get; set; }
     private int EmployeeType { get; set; } = -1;
 
     protected override async Task OnInitializedAsync()
     {
-        if (ID == null)
+        if (ID == Guid.Empty)
         {
-            EmployeeItem = await httpClient.GetFromJsonAsync<EmployeeEditViewModel>($"employee/{(ID == null ? 0 : ID)}");
+            EmployeeItem = await httpClient.GetFromJsonAsync<EmployeeEditViewModel>($"employee/{ID}");
 
         }
-        if (ID != null)
+        if (ID != Guid.Empty)
         {
             EmployeeType = (int)EmployeeItem.EmployeeType;
         }
@@ -81,7 +81,7 @@ else
             EmployeeType == -1)
             return;
         HttpResponseMessage response;
-        if (ID == null)
+        if (ID == Guid.Empty)
         {
             response = await httpClient.PostAsJsonAsync("employee", EmployeeItem);
         }

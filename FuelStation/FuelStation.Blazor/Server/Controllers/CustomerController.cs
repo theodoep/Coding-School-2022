@@ -15,7 +15,6 @@ namespace FuelStation.Blazor.Server.Controllers
         public CustomerController(IEntityRepo<Customer> customerRepo)
         {
             _customerRepo = customerRepo;
-
         }
 
         [HttpGet]
@@ -34,7 +33,7 @@ namespace FuelStation.Blazor.Server.Controllers
         public async Task<CustomerEditViewModel> Get(Guid id)
         {
             CustomerEditViewModel model = new();
-            if (id != null)
+            if (id != Guid.Empty)
             {
                 var existing = await _customerRepo.GetByIdAsync(id);
                 model.ID = existing.ID;

@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace FuelStation.Blazor.Server.Controllers
 {
     [ApiController]
-    [Route("controller")]
-    public class EmployeeController : ControllerBase
+    [Route("[controller]")]
+    public class EmployeesController : ControllerBase
     {
         private readonly IEntityRepo<Employee> _employeeRepo;
         //private readonly IEntityRepo<Commenter> _commenterRepo;
 
-        public EmployeeController(IEntityRepo<Employee> employeeRepo)
+
+        public EmployeesController(IEntityRepo<Employee> employeeRepo)
         {
             _employeeRepo = employeeRepo;
-
         }
 
         [HttpGet]
@@ -27,27 +27,27 @@ namespace FuelStation.Blazor.Server.Controllers
                 ID = x.ID,
                 Name = x.Name,
                 Surname = x.Surname,
-                EmployeeType = x.EmployeeType,
-                HireDateEnd = x.HireDateEnd,
                 HireDateStart = x.HireDateStart,
+                HireDateEnd = x.HireDateEnd,
+                EmployeeType = x.EmployeeType,
                 SalaryPerMonth = x.SalaryPerMonth
+                
             });
         }
         [HttpGet("{id}")]
         public async Task<EmployeeEditViewModel> Get(Guid id)
         {
             EmployeeEditViewModel model = new();
-            if (id != null)
+            if (id != Guid.Empty)
             {
                 var existing = await _employeeRepo.GetByIdAsync(id);
                 model.ID = existing.ID;
                 model.Name = existing.Name;
                 model.Surname = existing.Surname;
-                model.EmployeeType = existing.EmployeeType;
-                model.SalaryPerMonth = existing.SalaryPerMonth;
-                model.HireDateStart = existing.HireDateStart;
                 model.HireDateEnd = existing.HireDateEnd;
-
+                model.HireDateStart = existing.HireDateStart;
+                model.SalaryPerMonth = existing.SalaryPerMonth;
+                model.EmployeeType = existing.EmployeeType;
 
                 //model.Comments = existing.Comments.Select(comment => new CustomerEditCommentViewModel
                 //{
@@ -84,10 +84,10 @@ namespace FuelStation.Blazor.Server.Controllers
                 ID = employee.ID,
                 Surname = employee.Surname,
                 Name = employee.Name,
-                EmployeeType = employee.EmployeeType,
                 SalaryPerMonth = employee.SalaryPerMonth,
-                HireDateStart = employee.HireDateStart,
                 HireDateEnd = employee.HireDateEnd,
+                HireDateStart = employee.HireDateStart,
+                EmployeeType = employee.EmployeeType
 
 
             };
@@ -111,7 +111,7 @@ namespace FuelStation.Blazor.Server.Controllers
             itemToUpdate.Surname = employee.Surname;
             itemToUpdate.EmployeeType = employee.EmployeeType;
             itemToUpdate.HireDateStart = employee.HireDateStart;
-            itemToUpdate.HireDateEnd = employee.HireDateEnd;   
+            itemToUpdate.HireDateEnd = employee.HireDateEnd;
             itemToUpdate.SalaryPerMonth = employee.SalaryPerMonth;
 
             //itemToUpdate.Comments = customer.Comments.Select(comment => new CustomerComment(comment.Text)

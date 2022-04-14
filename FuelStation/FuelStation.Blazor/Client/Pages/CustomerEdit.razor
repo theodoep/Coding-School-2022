@@ -20,7 +20,7 @@ else
             <input class="form-control" @bind="@CustomerItem.Surname" />
         </div>
         <div class="col-md-6">
-            <label class="form-label">Phone</label>
+            <label class="form-label">Card Number</label>
             <input class="form-control" @bind="@CustomerItem.CardNumber" />
         </div>      
     </div>
@@ -32,24 +32,24 @@ else
     </div>
 }
 @code {
-    [Parameter] public int? ID { get; set; }
+    [Parameter] public Guid ID { get; set; }
     CustomerEditViewModel CustomerItem { get; set; }
 
      protected override async Task OnInitializedAsync()
     {
-        CustomerItem = await httpClient.GetFromJsonAsync<CustomerEditViewModel>($"customer/{(ID == null ? 0 : ID)}");
+        CustomerItem = await httpClient.GetFromJsonAsync<CustomerEditViewModel>($"customer/{ID}");
     }
 
      protected async Task OnSave()
     {
         HttpResponseMessage response;
-        if (ID == null)
+        if (ID == Guid.Empty)
         {
-            response = await httpClient.PostAsJsonAsync("customer", CustomerItem);
+            response = await httpClient.PostAsJsonAsync("Customer", CustomerItem);
         }
         else
         {
-            response = await httpClient.PutAsJsonAsync("customer", CustomerItem);
+            response = await httpClient.PutAsJsonAsync("Customer", CustomerItem);
         }
         response.EnsureSuccessStatusCode();
         navigationManager.NavigateTo("customerlist");
