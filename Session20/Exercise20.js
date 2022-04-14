@@ -29,6 +29,7 @@ console.log(value);
 
 // 3
 
+
 // 4
 // The function works just fine as it is.
 
@@ -41,11 +42,9 @@ function incrementString(myStr) {
     return myStr + "1";
 }
 
-
 function endsWithNumber(myStr) {
     return /[0-9]+$/.test(myStr);
 }
-
 
 function getNumberAtTheEnd(myStr) {
     return Number(myStr.match(/[0-9]+$/)[0]);

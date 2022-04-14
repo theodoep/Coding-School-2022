@@ -1,0 +1,102 @@
+﻿@page "/employeelist/edit/{Id:guid?}"
+@using FuelStation.Blazor.Shared
+@using FuelStation.Model
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+
+<h3>Employee Edit</h3>
+
+@if (EmployeeItem == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <label class="form-label">Name</label>
+            <input class="form-control" @bind="@EmployeeItem.Name" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Surname</label>
+            <input class="form-control" @bind="@EmployeeItem.Surname" />
+        </div>
+        <div class="col-md-6">
+            <label for="employee-type">Type</label>
+            <select name="employee-type" class="form-select" @bind="EmployeeType">
+                <option value="-1">Select Employee Type</option>
+                @foreach (var item in Enum.GetValues(typeof(EmployeeTypeEnum)))
+                {
+                    <option value="@((int)item)">@item.ToString()</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Monthly Salary</label>
+            <input class="form-control" @bind="@EmployeeItem.SalaryPerMonth" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Starting Hire Date</label>
+            <input class="form-control" @bind="@EmployeeItem.HireDateStart" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Ending Hire Date</label>
+            <input class="form-control" @bind="@EmployeeItem.HireDateEnd" />
+        </div>
+
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-success" @onclick="OnSave">Save</button>
+            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+        </div>
+    </div>
+}
+
+
+@code {
+    [Parameter] public int? ID { get; set; }
+    EmployeeEditViewModel EmployeeItem { get; set; }
+    private int EmployeeType { get; set; } = -1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (ID == null)
+        {
+            EmployeeItem = await httpClient.GetFromJsonAsync<EmployeeEditViewModel>($"employee/{(ID == null ? 0 : ID)}");
+
+        }
+        if (ID != null)
+        {
+            EmployeeType = (int)EmployeeItem.EmployeeType;
+        }
+
+    }
+
+    protected async Task OnSave()
+    {
+        if (string.IsNullOrEmpty(EmployeeItem.Name) ||
+            string.IsNullOrEmpty(EmployeeItem.Surname) ||
+            EmployeeItem.SalaryPerMonth == 0 ||
+            EmployeeType == -1)
+            return;
+        HttpResponseMessage response;
+        if (ID == null)
+        {
+            response = await httpClient.PostAsJsonAsync("employee", EmployeeItem);
+        }
+        else
+        {
+            response = await httpClient.PutAsJsonAsync("employee", EmployeeItem);
+        }
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("employeelist");
+    }
+
+    protected void OnCancel()
+    {
+        navigationManager.NavigateTo("employeelist");
+    }
+
+
+}
