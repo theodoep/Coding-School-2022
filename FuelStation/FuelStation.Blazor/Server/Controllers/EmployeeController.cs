@@ -7,13 +7,13 @@ namespace FuelStation.Blazor.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class EmployeesController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
         private readonly IEntityRepo<Employee> _employeeRepo;
         //private readonly IEntityRepo<Commenter> _commenterRepo;
 
 
-        public EmployeesController(IEntityRepo<Employee> employeeRepo)
+        public EmployeeController(IEntityRepo<Employee> employeeRepo)
         {
             _employeeRepo = employeeRepo;
         }

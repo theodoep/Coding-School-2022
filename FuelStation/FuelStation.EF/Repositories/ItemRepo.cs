@@ -51,7 +51,7 @@ namespace FuelStation.EF.Repositories
 
         private void AddLogic(Item entity, FuelStationContext context)
         {
-            if (entity.ID != null)
+            if (entity.ID != Guid.Empty)
                 throw new ArgumentException("Given entity should not have Id set", nameof(entity));
 
             context.Items.Add(entity);

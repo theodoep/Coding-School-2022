@@ -14,7 +14,7 @@ namespace FuelStation.Blazor.Client.Pages
         }
         private async Task LoadItemsFromServer()
         {
-            itemList = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("Customer");
+            itemList = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("Item1");
         }
         async Task AddItem()
         {
@@ -29,7 +29,7 @@ namespace FuelStation.Blazor.Client.Pages
             var confirm = await jsRuntime.InvokeAsync<bool>("confirmDelete", null);
             if (confirm)
             {
-                var response = await httpClient.DeleteAsync($"item/{itemToDelete.ID}");
+                var response = await httpClient.DeleteAsync($"item1/{itemToDelete.ID}");
                 response.EnsureSuccessStatusCode();
                 await LoadItemsFromServer();
             }

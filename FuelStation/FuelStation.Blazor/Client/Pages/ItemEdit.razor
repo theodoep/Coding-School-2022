@@ -1,5 +1,6 @@
 ﻿@page "/itemlist/edit/{Id:guid?}"
 @using FuelStation.Blazor.Shared
+@using FuelStation.Model
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 
@@ -20,9 +21,15 @@ else
             <input class="form-control" @bind="@ItemItem.Description" />
         </div>
         <div class="col-md-6">
-            <label class="form-label">Type</label>
-            <input class="form-control" @bind="@ItemItem.ItemType" />
-        </div>      
+            <label for="item-type">Type</label>
+            <select name="item-type" class="form-select" @bind="ItemType">
+                <option value="-1">Select Item Type</option>
+                @foreach (var item in Enum.GetValues(typeof(ItemTypeEnum)))
+                {
+                    <option value="@((int)item)">@item.ToString()</option>
+                }
+            </select>
+        </div>
         <div class="col-md-6">
             <label class="form-label">Price</label>
             <input class="form-control" @bind="@ItemItem.Price" />
@@ -42,10 +49,11 @@ else
 @code {
     [Parameter] public Guid ID { get; set; }
     ItemEditViewModel ItemItem { get; set; }
+    private int ItemType { get; set; } = -1;
 
     protected override async Task OnInitializedAsync()
     {
-        ItemItem = await httpClient.GetFromJsonAsync<ItemEditViewModel>($"item/{ID}");
+        ItemItem = await httpClient.GetFromJsonAsync<ItemEditViewModel>($"item1/{ID}");
     }
 
      protected async Task OnSave()
@@ -53,11 +61,11 @@ else
         HttpResponseMessage response;
         if (ID == Guid.Empty)
         {
-            response = await httpClient.PostAsJsonAsync("item", ItemItem);
+            response = await httpClient.PostAsJsonAsync("Item1", ItemItem);
         }
         else
         {
-            response = await httpClient.PutAsJsonAsync("item", ItemItem);
+            response = await httpClient.PutAsJsonAsync("Item1", ItemItem);
         }
         response.EnsureSuccessStatusCode();
         navigationManager.NavigateTo("itemlist");

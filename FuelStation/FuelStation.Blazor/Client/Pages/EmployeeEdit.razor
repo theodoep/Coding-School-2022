@@ -61,25 +61,11 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        if (ID == Guid.Empty)
-        {
-            EmployeeItem = await httpClient.GetFromJsonAsync<EmployeeEditViewModel>($"employee/{ID}");
-
-        }
-        if (ID != Guid.Empty)
-        {
-            EmployeeType = (int)EmployeeItem.EmployeeType;
-        }
-
+            EmployeeItem = await httpClient.GetFromJsonAsync<EmployeeEditViewModel>($"Employee/{ID}");
     }
 
     protected async Task OnSave()
     {
-        if (string.IsNullOrEmpty(EmployeeItem.Name) ||
-            string.IsNullOrEmpty(EmployeeItem.Surname) ||
-            EmployeeItem.SalaryPerMonth == 0 ||
-            EmployeeType == -1)
-            return;
         HttpResponseMessage response;
         if (ID == Guid.Empty)
         {

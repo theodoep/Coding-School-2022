@@ -6,19 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace FuelStation.Blazor.Server.Controllers
 {
     [ApiController]
-    [Route("controller")]
-    public class AfaffController : ControllerBase
+    [Route("[controller]")]
+    public class Item1Controller : ControllerBase
     {
         private readonly IEntityRepo<Item> _itemRepo;
 
-        //public ItemsController(IEntityRepo<Item> itemRepo)
-        //{
-        //    _itemRepo = itemRepo;
-
-        //}
-
-        public AfaffController()
+        public Item1Controller(IEntityRepo<Item> itemRepo)
         {
+            _itemRepo = itemRepo;
 
         }
 
@@ -78,7 +73,7 @@ namespace FuelStation.Blazor.Server.Controllers
 
 
             };
-            
+
             await _itemRepo.AddAsync(newItem);
         }
 

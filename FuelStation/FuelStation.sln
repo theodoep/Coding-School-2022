@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelStation.Blazor.Client",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelStation.Blazor.Shared", "FuelStation.Blazor\Shared\FuelStation.Blazor.Shared.csproj", "{1EB9607C-670E-4A5E-85E9-32B29ACB139A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelStation.WindowsForms", "FuelStation.WindowsForms\FuelStation.WindowsForms.csproj", "{D107806C-2529-481C-A068-B61545BF24F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1EB9607C-670E-4A5E-85E9-32B29ACB139A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EB9607C-670E-4A5E-85E9-32B29ACB139A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EB9607C-670E-4A5E-85E9-32B29ACB139A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D107806C-2529-481C-A068-B61545BF24F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D107806C-2529-481C-A068-B61545BF24F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D107806C-2529-481C-A068-B61545BF24F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D107806C-2529-481C-A068-B61545BF24F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

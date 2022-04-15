@@ -23,5 +23,14 @@ namespace FuelStation.Blazor.Shared
         public PaymentMethodEnum PaymentMethod { get; set; }
         public decimal TotalValue { get; set; }
     }
+    public class TransactionEditCustomerViewModel : Base
+    {
+
+        public string Name { get; set; }
+        public string Surname { get; set; }
+
+        public string CardNumber { get; set; }
+    }
+
 }
 
