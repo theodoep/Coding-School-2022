@@ -72,5 +72,25 @@ namespace FuelStation.WindowsForms
         {
 
         }
+
+        private async void addCustomerButton_Click(object sender, EventArgs e)
+        {
+            var customerEdit = new CustomerEditForm();
+            customerEdit.SelectedID = Guid.Empty;
+            customerEdit.ShowDialog();
+            await RefreshData();
+        }
+
+        private async void buttonCustomerEdit_Click(object sender, EventArgs e)
+        {
+            var customerEdit = new CustomerEditForm();
+            var row = dataGridCustomers.CurrentRow;
+            if (row is null)
+                return;
+            var IDtoEdit = row.Cells["ID"].Value;
+            customerEdit.SelectedID = (Guid)IDtoEdit;
+            customerEdit.ShowDialog();
+            await RefreshData();
+        }
     }
 }

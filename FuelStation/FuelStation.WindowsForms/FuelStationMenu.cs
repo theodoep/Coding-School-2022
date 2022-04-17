@@ -18,8 +18,13 @@ namespace FuelStation.WindowsForms
 
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var employeeForm = new EmployeeForm();
-            employeeForm.ShowDialog();
+
+        }
+
+        private void itemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var itemForm = new ItemForm();
+            itemForm.ShowDialog();
         }
     }
 }
