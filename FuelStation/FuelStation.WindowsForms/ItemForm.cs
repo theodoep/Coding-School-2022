@@ -21,7 +21,7 @@ namespace FuelStation.WindowsForms
         {
             var httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:7134/");
-            var response = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("Item");
+            var response = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("Item1");
             Items = response;
 
 
@@ -39,7 +39,7 @@ namespace FuelStation.WindowsForms
         {
             var httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:7134/");
-            var response = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("Item");
+            var response = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("Item1");
 
             Items = response;
             bsItems.DataSource = Items;
@@ -70,7 +70,7 @@ namespace FuelStation.WindowsForms
             var IDtoDelete = row.Cells["ID"].Value;
             var httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:7134/");
-            var response = await httpClient.DeleteAsync($"item/{IDtoDelete}");
+            var response = await httpClient.DeleteAsync($"item1/{IDtoDelete}");
             response.EnsureSuccessStatusCode();
             await RefreshItems(); 
         }
